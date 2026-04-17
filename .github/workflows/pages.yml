@@ -57,6 +57,11 @@ jobs:
           wget -r -l 12 -nH -p -k -E -np -e robots=off \
             -P public \
             "${PRESENT_URL}"
+          # wget does not execute JS; slides.js injects styles.css at runtime, so it is never discovered.
+          mkdir -p public/static
+          for asset in article.css dir.css dir.js jquery-ui.js jquery.js notes.css notes.js playground.js play.js slides.js styles.css; do
+            curl -fsS "http://127.0.0.1:3999/static/${asset}" -o "public/static/${asset}"
+          done
           kill "${present_pid}" 2>/dev/null || true
           trap - EXIT
           touch public/.nojekyll

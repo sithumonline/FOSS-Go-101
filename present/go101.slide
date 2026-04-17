@@ -166,23 +166,6 @@ Go does not rely on exceptions. Errors are *returned values*.
 - Always check `err != nil` before using the value
 - `defer` runs a statement when the surrounding function returns
 
-* Classroom Activities (With Tests)
-
-Use these exercises in GitHub Classroom:
-
-- `present/activities/fizzbuzz`
-- `present/activities/grade`
-
-Each activity includes starter code and unit tests.
-
-Run tests from the repository root:
-
-`go test ./present/activities/...`
-
-* Activity Preview
-
-.code activities/fizzbuzz/fizzbuzz.go
-
 * Mini Project: Todo List
 
 Build a small in-memory Todo app using basic Go concepts:

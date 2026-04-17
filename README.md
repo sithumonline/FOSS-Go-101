@@ -27,7 +27,6 @@ present -content ./present -use_playground=true
 
 For student practice, check:
 
-- [`present/activities/`](present/activities/) for small exercises with tests
 - [`present/project/todo/`](present/project/todo/) for the level-by-level mini project
 
 ## Publish on GitHub Pages

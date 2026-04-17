@@ -23,6 +23,13 @@ To run editable code snippets against **play.golang.org** instead of a local Web
 present -content ./present -use_playground=true
 ```
 
+## Classroom note
+
+For student practice, check:
+
+- [`present/activities/`](present/activities/) for small exercises with tests
+- [`present/project/todo/`](present/project/todo/) for the level-by-level mini project
+
 ## Publish on GitHub Pages
 
 The workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) exports the deck to static HTML and deploys it with GitHub Actions.

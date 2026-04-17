@@ -1,0 +1,181 @@
+Go 101
+A Practical Introduction for University Students
+Tags: go, programming, beginner
+
+* What is a Go Program?
+
+Every Go program has a shape. Before learning the details, learn to read it.
+
+- Every file belongs to a *package*
+- The `main` package is special — it produces a runnable program
+- `main()` is always the starting point
+- Names starting with a capital letter are *exported* (visible outside the package)
+
+* Hello, 世界
+
+.play code/hello.go
+
+- `package main` tells Go this is a runnable program
+- `import "fmt"` brings in the format package
+- `fmt.Println` is exported — that is why it starts with a capital letter
+
+* Functions
+
+.code code/functions.go
+
+- Functions are the building blocks of Go programs
+- Parameters have types after their names
+- Multiple return values are common in Go
+
+* How Do We Store Data?
+
+Go is *statically typed* — every variable has a type, known at compile time.
+
+- `var` declares a variable
+- `:=` is shorthand inside functions (type is inferred)
+- Every type has a *zero value* — Go never leaves memory uninitialised
+
+* Variables and Types
+
+.code code/variables.go
+
+Basic types you will use most:
+
+  int      float64      bool      string
+
+* Zero Values
+
+.code code/zerovalues.go
+
+No surprises. Go sets every variable to a sensible default.
+
+- `int` → `0`
+- `float64` → `0.0`
+- `bool` → `false`
+- `string` → `""`
+
+* Constants and Type Conversions
+
+.code code/constants.go
+
+- Constants are fixed at compile time
+- Go does *not* freely mix number types — you must convert explicitly
+
+* How Do We Make Decisions?
+
+`for` is Go's only loop. `if` and `switch` handle branching.
+
+Go keeps the control flow vocabulary small — but it covers everything you need.
+
+* For — Go's Only Loop
+
+.code code/forloop.go
+
+Three forms:
+
+- C-style: `for i := 0; i < 5; i++`
+- While-style: `for n < 100`
+- Infinite: `for { ... }`
+
+* If and Switch
+
+.code code/ifsw.go
+
+- `switch` is cleaner than a long chain of `if/else`
+- Cases do not fall through by default in Go
+
+* How Do We Store Many Values?
+
+.html code/collections_intro.html
+
+- *Array* — fixed size, rarely used directly
+- *Slice* — dynamic, used everywhere in real Go code
+- *Map* — key-value storage
+
+* Arrays and Slices
+
+.code code/slices.go
+
+Arrays have a fixed size. Slices are flexible views over data.
+
+In real Go code, you will almost always use slices.
+
+* Range
+
+.code code/range.go
+
+`range` iterates over slices, arrays, maps, and strings.
+
+- First value: index (or key)
+- Second value: element (or value)
+
+* Maps
+
+.code code/maps.go
+
+- Key-value data
+- Access a missing key returns the zero value
+- Use the two-value form to check if a key exists
+
+* How Do We Model Real-World Data?
+
+A *struct* groups related fields into one named type.
+
+.code code/structs.go
+
+Good examples for students:
+
+  Student   Book   BankAccount   CartItem
+
+* How Do We Add Behaviour?
+
+*Methods* are functions attached to a type. This is how Go adds behaviour to data.
+
+.code code/methods.go
+
+Go has no classes. Structs + methods cover the same ground, more simply.
+
+* Interfaces
+
+An *interface* describes behaviour, not structure.
+
+.code code/interfaces.go
+
+- Any type that has the right methods satisfies the interface automatically
+- No `implements` keyword needed
+- Keep interfaces small — one or two methods is normal in Go
+
+* How Does Go Handle Memory?
+
+*Pointers* store the address of a value. They let functions modify data without copying it.
+
+.code code/pointers.go
+
+The clearest way to teach pointers:
+
+1. Show a function that *fails* to modify a variable (passes by value)
+2. Show the pointer version that *works*
+
+* How Does Go Handle Problems?
+
+Go does not rely on exceptions. Errors are *returned values*.
+
+.code code/errors.go
+
+- Functions often return `(value, error)`
+- Always check `err != nil` before using the value
+- `defer` runs a statement when the surrounding function returns
+
+* What to Take Away
+
+.html code/summary.html
+
+* What Next?
+
+After Go 101, explore:
+
+- [[https://tour.golang.org][A Tour of Go]] — interactive browser exercises
+- [[https://gobyexample.com][Go by Example]] — annotated example programs
+- [[https://pkg.go.dev/std][Standard Library]] — batteries included
+
+Write small programs. Reading is not enough.

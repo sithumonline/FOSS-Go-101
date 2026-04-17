@@ -1,0 +1,22 @@
+<table style="width:100%; font-size:1.1em; border-collapse:collapse;">
+  <tr>
+    <th style="text-align:left; padding:8px; border-bottom:2px solid #aaa;">Type</th>
+    <th style="text-align:left; padding:8px; border-bottom:2px solid #aaa;">Size</th>
+    <th style="text-align:left; padding:8px; border-bottom:2px solid #aaa;">Use when</th>
+  </tr>
+  <tr>
+    <td style="padding:8px;"><code>Array</code></td>
+    <td style="padding:8px;">Fixed</td>
+    <td style="padding:8px;">Rarely — size is known and never changes</td>
+  </tr>
+  <tr style="background:#f5f5f5;">
+    <td style="padding:8px;"><code>Slice</code></td>
+    <td style="padding:8px;">Dynamic</td>
+    <td style="padding:8px;">Almost always — the default list in Go</td>
+  </tr>
+  <tr>
+    <td style="padding:8px;"><code>Map</code></td>
+    <td style="padding:8px;">Dynamic</td>
+    <td style="padding:8px;">Key-value lookups</td>
+  </tr>
+</table>

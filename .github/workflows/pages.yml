@@ -1,0 +1,109 @@
+# Build golang.org/x/tools/cmd/present slides as a static site and deploy to GitHub Pages.
+name: Deploy slides to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Install present
+        run: go install golang.org/x/tools/cmd/present@latest
+
+      - name: Export static site from present
+        env:
+          PRESENT_URL: http://127.0.0.1:3999/go101.slide
+        run: |
+          set -euo pipefail
+          export PATH="$(go env GOPATH)/bin:${PATH}"
+          present -content "${GITHUB_WORKSPACE}/present" \
+            -http 127.0.0.1:3999 \
+            -use_playground=true &
+          present_pid=$!
+          trap 'kill ${present_pid} 2>/dev/null || true' EXIT
+          for i in $(seq 1 60); do
+            if curl -fsS "${PRESENT_URL}" -o /dev/null; then
+              break
+            fi
+            sleep 1
+            if [ "${i}" -eq 60 ]; then
+              echo "present did not become ready in time"
+              exit 1
+            fi
+          done
+          mkdir -p public
+          wget -r -l 12 -nH -p -k -E -np -e robots=off \
+            -P public \
+            "${PRESENT_URL}"
+          kill "${present_pid}" 2>/dev/null || true
+          trap - EXIT
+          touch public/.nojekyll
+          main="public/go101.slide.html"
+          if [ ! -f "${main}" ]; then
+            echo "expected ${main} after mirror; listing public:"
+            find public -type f | head -50
+            exit 1
+          fi
+          cp "${main}" public/index.html
+
+      - name: Patch absolute paths for project Pages
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          set -euo pipefail
+          if [ -z "${BASE_PATH}" ]; then
+            echo "Root Pages site; skipping path rewrites."
+            exit 0
+          fi
+          echo "Rewriting /static and /play.js for base path: ${BASE_PATH}"
+          find public -type f \( -name '*.html' -o -name '*.js' \) -print0 |
+            while IFS= read -r -d '' f; do
+              sed -i \
+                -e "s|src='/static/|src='${BASE_PATH}/static/|g" \
+                -e "s|src=\"/static/|src=\"${BASE_PATH}/static/|g" \
+                -e "s|href='/static/|href='${BASE_PATH}/static/|g" \
+                -e "s|href=\"/static/|href=\"${BASE_PATH}/static/|g" \
+                -e "s|src='/play.js|src='${BASE_PATH}/play.js|g" \
+                -e "s|src=\"/play.js|src=\"${BASE_PATH}/play.js|g" \
+                "$f"
+            done
+          sj="public/static/slides.js"
+          if [ -f "${sj}" ]; then
+            sed -i "s|var PERMANENT_URL_PREFIX = '/static/';|var PERMANENT_URL_PREFIX = '${BASE_PATH}/static/';|" "${sj}"
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

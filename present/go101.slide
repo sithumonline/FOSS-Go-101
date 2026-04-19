@@ -2,6 +2,64 @@ Go 101
 A Practical Introduction for University Students
 Tags: go, programming, beginner
 
+* Why Does Go Exist?
+
+The year is 2007. Rob Pike is waiting *45 minutes* for a C++ program to compile at Google.
+
+While waiting, he attends a talk about *35 new features* coming to C++11, and asks himself:
+
+_"Did the C++ committee really believe that what was wrong with C++_
+_was that it didn't have enough features?"_
+
+By the time that build finished, he, *Robert* *Griesemer*, and *Ken* *Thompson* had a whiteboard full of ideas.
+
+That whiteboard became *Go*.
+
+- Born inside Google in 2007
+- Open-sourced in 2009
+- Go 1.0 released in 2012 — backwards-compatible ever since
+
+* What Go Set Out to Fix
+
+Every mainstream language before Go had real pain points:
+
+- *C* */* *C++* — fast, but unsafe, complex, slow to compile, manual memory management
+- *Java* */* *C#* — safe, but verbose, heavy runtimes, slow startup, lots of ceremony
+- *Python* */* *Ruby* */* *JavaScript* — friendly, but slow and weak at real concurrency
+- *All* *of* *them* — concurrency is hard, dependency management is painful
+
+Go's answer in one line:
+
+  Fast like C, safe like Java, simple like Python — with concurrency built in.
+
+What you get:
+
+- Compiles in *seconds*, not minutes
+- One *single* *binary* — no runtime, no JVM, no interpreter to install
+- Goroutines and channels for easy concurrency
+- Garbage collection, memory safety, and a strong standard library
+
+* Go's Family Tree
+
+Go is the first mainstream language to merge *two* language traditions:
+
+*European* *branch* — simplicity and structure
+
+  ALGOL → Pascal → Modula → Oberon        (Niklaus Wirth)
+
+*American* *branch* — systems and concurrency
+
+  BCPL → C → Unix pipes → CSP → Newsqueak (Thompson, Ritchie, Hoare, Pike)
+
+That is why in Go:
+
+- Declarations read left-to-right: `name type` (from *Oberon*, not C)
+- Goroutines and channels feel natural (from Hoare's *CSP*, 1978)
+- The tools feel Unix-like (Ken Thompson co-created Unix)
+- Implicit interfaces mirror a 1989 HP Labs paper — rediscovered, not invented
+
+Go is sometimes called _"a language from the 1970s"_ — because it revived many great ideas whose time had finally come.
+
 * What is a Go Program?
 
 Every Go program has a shape. Before learning the details, learn to read it.
@@ -145,6 +203,8 @@ An *interface* describes behaviour, not structure.
 - No `implements` keyword needed
 - Keep interfaces small — one or two methods is normal in Go
 
+_Fun_ _fact:_ Go's implicit interfaces closely match a 1989 HP Labs paper the Go team didn't know about — great ideas tend to be rediscovered.
+
 * How Does Go Handle Memory?
 
 *Pointers* store the address of a value. They let functions modify data without copying it.
@@ -187,6 +247,24 @@ Run project tests:
 
 .code project/todo/todo.go
 
+* Go's Design Philosophy
+
+A few ideas shaped the entire language:
+
+- _"As simple as possible, but not simpler."_
+- _"When in doubt, leave it out."_ — Josh Bloch
+- Tony Hoare: there are two ways to build software — make it so simple there are obviously no bugs, or so complex there are no obvious bugs. *Go chose the first.*
+
+The Go team's default answer to new features is *no*.
+
+  Saying "no" is temporary. Saying "yes" is forever.
+
+That is why Go is small on purpose:
+
+- *25* keywords (Java has ~50, C++ has ~90)
+- One loop (`for`), one way to format code (`gofmt`), one way to manage deps (`go` `mod`)
+- The language you learn today will still be valid in ten years
+
 * What to Take Away
 
 .html code/summary.html
@@ -200,3 +278,46 @@ After Go 101, explore:
 - [[https://pkg.go.dev/std][Standard Library]] — batteries included
 
 Write small programs. Reading is not enough.
+
+* Go in the Real World — The Ecosystem
+
+Go quietly powers a huge part of modern cloud infrastructure:
+
+- *Containers* *&* *Orchestration* — Docker, Kubernetes, containerd, Podman
+- *Infrastructure* *as* *Code* — Terraform, Pulumi, Packer
+- *Observability* — Prometheus, Grafana Loki, Jaeger, OpenTelemetry
+- *Databases* — etcd, CockroachDB, InfluxDB, TiDB, Dgraph
+- *Networking* *&* *Web* — Caddy, Traefik, gRPC, NATS
+- *Developer* *Tools* — Hugo (static sites), `present` (these slides!), GitHub CLI, Syncthing
+
+If you have ever used *kubectl*, *docker*, *terraform*, or *gh* — you have already used a Go program.
+
+* Go in the Real World — Companies
+
+Companies running Go in production:
+
+- *Google,* *YouTube,* *Uber,* *Netflix,* *Dropbox,* *Cloudflare,* *Twitch*
+- *Twitter* — ~5 billion sessions/day through a Go service
+- *Medium* — the entire social graph runs on Go
+- *Salesforce* — migrated core services from Python to Go
+- *PayPal,* *American* *Express,* *Monzo,* *Revolut* — fintech backends
+
+Real migration stories:
+
+- Java → Go migrations commonly report *10×–50×* lower cloud costs
+- Python → Go often cuts latency and server count dramatically
+- Go is consistently a *top* *"most* *wanted* *to* *learn"* language on the JetBrains and Stack Overflow surveys
+
+* Why This Matters for You
+
+Learning Go is not just learning a language — it's learning the language of *modern* *backend* *and* *cloud* *engineering*.
+
+- Small language → you can become productive in *weeks*, not years
+- Huge ecosystem → real jobs, real projects, real open-source contributions
+- Great first language for: *APIs,* *CLIs,* *microservices,* *DevOps* *tools,* *distributed* *systems*
+
+A final thought from Steve Francia (Go team):
+
+_"Go empowers people to take their ideas and turn them into reality."_
+
+Now go build something.

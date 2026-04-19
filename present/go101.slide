@@ -64,8 +64,6 @@ Every Go program has a shape. Before learning the details, learn to read it.
 
 .play code/hello.go
 
-* Anatomy of a Go Program
-
 .html code/anatomy.html
 
 - `package main` tells Go this is a runnable program
@@ -77,7 +75,7 @@ Every Go program has a shape. Before learning the details, learn to read it.
 .code code/functions.go
 
 - Functions are the building blocks of Go programs
-- Parameters have types after their names
+- Parameters have types *after* their names (Oberon-style)
 - Multiple return values are common in Go
 
 * How Do We Store Data?
@@ -137,6 +135,24 @@ Three forms:
 - `switch` is cleaner than a long chain of `if/else`
 - Cases do not fall through by default in Go
 
+* How Do We Model Real-World Data?
+
+A *struct* groups related fields into one named type.
+
+.code code/structs.go
+
+Good examples for students:
+
+  Student   Book   BankAccount   CartItem
+
+* A Struct is a Labeled Box
+
+.html code/struct_diagram.html
+
+Fields are accessed with a dot: `s.Name`, `s.Age`, `s.Email`.
+
+A struct is just data — later we will give it *behaviour* with methods.
+
 * How Do We Store Many Values?
 
 .html code/collections_intro.html
@@ -151,7 +167,7 @@ Three forms:
 
 Arrays have a fixed size. Slices are flexible views over data.
 
-In real Go code, you will almost always use slices.
+Now that we have `Student`, the natural container is `[]Student` — a slice of structs.
 
 * How a Slice Works
 
@@ -170,23 +186,30 @@ In real Go code, you will almost always use slices.
 
 .code code/maps.go
 
-- Key-value data
-- Access a missing key returns the zero value
-- Use the two-value form to check if a key exists
+- Key-value data — here: name → `Student`
+- Accessing a missing key returns the *zero* *value*
+- Use the two-value form (`v, ok := m[k]`) to check existence
 
-* How Do We Model Real-World Data?
+* How Does Go Handle Memory?
 
-A *struct* groups related fields into one named type.
+*Pointers* store the address of a value. They let functions modify data without copying it.
 
-.code code/structs.go
+.code code/pointers.go
 
-Good examples for students:
+The clearest way to teach pointers:
 
-  Student   Book   BankAccount   CartItem
+1. Show a function that *fails* to modify a variable (passes by value)
+2. Show the pointer version that *works*
 
-* A Struct is a Labeled Box
+* Pointers, Visually
 
-.html code/struct_diagram.html
+.html code/pointer_diagram.html
+
+Three symbols to remember:
+
+- `&x` — *the address of x* (get a pointer)
+- `*p` — *the value at p* (follow the pointer)
+- `*int` — *a pointer to an int* (the type)
 
 * How Do We Add Behaviour?
 
@@ -194,7 +217,9 @@ Good examples for students:
 
 .code code/methods.go
 
-Go has no classes. Structs + methods cover the same ground, more simply.
+- The `(r Rectangle)` part is the *receiver* — like `this` or `self` in other languages
+- Use a *pointer* *receiver* `(r *Rectangle)` when the method needs to *modify* the value
+- Go has no classes. Structs + methods cover the same ground, more simply.
 
 * Interfaces
 
@@ -212,21 +237,6 @@ _Fun_ _fact:_ Go's implicit interfaces closely match a 1989 HP Labs paper the Go
 
 .html code/interface_diagram.html
 
-* How Does Go Handle Memory?
-
-*Pointers* store the address of a value. They let functions modify data without copying it.
-
-.code code/pointers.go
-
-The clearest way to teach pointers:
-
-1. Show a function that *fails* to modify a variable (passes by value)
-2. Show the pointer version that *works*
-
-* Pointers, Visually
-
-.html code/pointer_diagram.html
-
 * How Does Go Handle Problems?
 
 Go does not rely on exceptions. Errors are *returned values*.
@@ -236,6 +246,53 @@ Go does not rely on exceptions. Errors are *returned values*.
 - Functions often return `(value, error)`
 - Always check `err != nil` before using the value
 - `defer` runs a statement when the surrounding function returns
+
+* Goroutines — A Taste
+
+Remember the *Family* *Tree*? This is where CSP (Hoare, 1978) shows up in real code.
+
+.play code/goroutines.go
+
+- `go f()` runs `f` *concurrently* — a lightweight thread called a *goroutine*
+- `chan` is a typed pipe — goroutines talk by sending values, not by sharing memory
+- You can run *hundreds* *of* *thousands* of goroutines on one machine
+
+This is Go's superpower. We're only scratching the surface today.
+
+* Testing — A Taste
+
+Go has testing *built into the language*. No frameworks, no imports beyond the standard library.
+
+.code code/testing/add.go
+
+.code code/testing/add_test.go
+
+Run the test:
+
+  go test ./code/testing/
+
+- Test files live next to the code, named `*_test.go`
+- Each test is a function `TestXxx(t *testing.T)`
+- `t.Errorf` reports a failure but keeps the test running
+
+* Go vs OOP You Already Know
+
+If you come from Java, C#, Python, or C++, here is the translation table:
+
+  OOP concept          →  Go equivalent
+  ─────────────────────────────────────────────────
+  class                →  struct  +  methods
+  new Foo()            →  Foo{} or &Foo{}
+  this / self          →  the receiver:  (s *Student)
+  extends / inherits   →  embedding a struct (composition)
+  implements X         →  (nothing — interfaces are implicit)
+  abstract class       →  interface
+  private field        →  lowercase name
+  public field         →  Capitalised name
+  throw Exception      →  return an error value
+  instanceof           →  type assertion:  v, ok := x.(T)
+
+Go is object-oriented — but with *no* *classes* and *no* *inheritance*. It keeps the useful parts and drops the heavy ones.
 
 * Mini Project: Todo List
 

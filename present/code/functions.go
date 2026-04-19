@@ -6,20 +6,14 @@ func add(x int, y int) int {
 	return x + y
 }
 
-func divide(a, b float64) (float64, error) {
-	if b == 0 {
-		return 0, fmt.Errorf("cannot divide by zero")
-	}
-	return a / b, nil
+// Multiple return values are common in Go.
+func divmod(a, b int) (int, int) {
+	return a / b, a % b
 }
 
 func main() {
-	fmt.Println(add(3, 4))
+	fmt.Println("3 + 4 =", add(3, 4))
 
-	result, err := divide(10, 3)
-	if err != nil {
-		fmt.Println("error:", err)
-		return
-	}
-	fmt.Printf("%.2f\n", result)
+	q, r := divmod(17, 5)
+	fmt.Println("17 / 5 =", q, "remainder", r)
 }

@@ -2,17 +2,26 @@ package main
 
 import "fmt"
 
+type Student struct {
+	Name  string
+	Score float64
+}
+
 func main() {
-	// Array — fixed size
-	var arr [3]string
-	arr[0] = "Go"
-	arr[1] = "is"
-	arr[2] = "fun"
+	// Array — fixed size, rarely used directly.
+	var topThree [3]string
+	topThree[0] = "Asha"
+	topThree[1] = "Budi"
+	topThree[2] = "Cheng"
 
-	// Slice — dynamic, used in real Go code
-	marks := []int{85, 90, 78}
-	marks = append(marks, 95)
+	// Slice of structs — dynamic, resizable, the workhorse of real Go code.
+	students := []Student{
+		{"Asha", 88.5},
+		{"Budi", 75.0},
+	}
 
-	fmt.Println(arr)
-	fmt.Println(marks)
+	students = append(students, Student{"Cheng", 92.0})
+
+	fmt.Println(topThree)
+	fmt.Println(students)
 }

@@ -1,0 +1,58 @@
+<svg width="100%" viewBox="0 0 880 320" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <style>
+    .iface { fill: #00ADD8; stroke: #006b85; stroke-width: 2; }
+    .type  { fill: #eef5ff; stroke: #4a7dbf; stroke-width: 1.5; }
+    .white { fill: #fff; font-weight: bold; font-size: 16px; text-anchor: middle; }
+    .mono  { font-family: Menlo, Consolas, monospace; font-size: 13px; }
+    .ttl   { font-size: 15px; font-weight: bold; fill: #333; }
+    .arrow { stroke: #006b85; stroke-width: 2; fill: none; marker-end: url(#ah4); }
+    .cap   { font-size: 13px; fill: #555; }
+  </style>
+  <defs>
+    <marker id="ah4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#006b85"/>
+    </marker>
+  </defs>
+
+  <!-- Interface in the middle -->
+  <g transform="translate(340, 110)">
+    <rect class="iface" x="0" y="0" width="200" height="90" rx="10"/>
+    <text class="white" x="100" y="35">interface Shape</text>
+    <text class="mono" x="100" y="60" text-anchor="middle" fill="#fff">Area()   float64</text>
+    <text class="mono" x="100" y="78" text-anchor="middle" fill="#fff">Perim()  float64</text>
+  </g>
+
+  <!-- Concrete types -->
+  <g transform="translate(40, 30)">
+    <rect class="type" x="0" y="0" width="180" height="70" rx="8"/>
+    <text class="ttl" x="90" y="25" text-anchor="middle">Circle</text>
+    <text class="mono" x="90" y="45" text-anchor="middle">Area() float64</text>
+    <text class="mono" x="90" y="62" text-anchor="middle">Perim() float64</text>
+  </g>
+  <g transform="translate(40, 225)">
+    <rect class="type" x="0" y="0" width="180" height="70" rx="8"/>
+    <text class="ttl" x="90" y="25" text-anchor="middle">Rectangle</text>
+    <text class="mono" x="90" y="45" text-anchor="middle">Area() float64</text>
+    <text class="mono" x="90" y="62" text-anchor="middle">Perim() float64</text>
+  </g>
+  <g transform="translate(660, 30)">
+    <rect class="type" x="0" y="0" width="180" height="70" rx="8"/>
+    <text class="ttl" x="90" y="25" text-anchor="middle">Triangle</text>
+    <text class="mono" x="90" y="45" text-anchor="middle">Area() float64</text>
+    <text class="mono" x="90" y="62" text-anchor="middle">Perim() float64</text>
+  </g>
+  <g transform="translate(660, 225)">
+    <rect class="type" x="0" y="0" width="180" height="70" rx="8" opacity="0.5" stroke-dasharray="4 3"/>
+    <text class="ttl" x="90" y="25" text-anchor="middle" fill="#888">YourOwnType</text>
+    <text class="mono" x="90" y="45" text-anchor="middle" fill="#888">Area() float64</text>
+    <text class="mono" x="90" y="62" text-anchor="middle" fill="#888">Perim() float64</text>
+  </g>
+
+  <!-- Arrows -->
+  <path class="arrow" d="M220,65  C 290,80  310,120 340,130"/>
+  <path class="arrow" d="M220,260 C 290,240 310,200 340,180"/>
+  <path class="arrow" d="M660,65  C 600,80  580,120 540,130"/>
+  <path class="arrow" d="M660,260 C 600,240 580,200 540,180"/>
+
+  <text x="440" y="280" text-anchor="middle" class="cap">No <tspan font-family="Menlo" fill="#222">implements</tspan> keyword.  If the methods match, the type satisfies the interface — automatically.</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg width="100%" viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <style>
+    .outer { fill: #eef5ff; stroke: #4a7dbf; stroke-width: 2; }
+    .field { fill: #fff; stroke: #aac4e0; stroke-width: 1; }
+    .fname { font-family: Menlo, Consolas, monospace; font-size: 15px; fill: #006b85; }
+    .ftype { font-family: Menlo, Consolas, monospace; font-size: 15px; fill: #444; }
+    .fval  { font-family: Menlo, Consolas, monospace; font-size: 15px; fill: #222; }
+    .ttl   { font-family: Menlo, Consolas, monospace; font-size: 17px; fill: #222; font-weight: bold; }
+    .cap   { font-size: 13px; fill: #555; }
+  </style>
+
+  <!-- Declaration -->
+  <text x="40" y="40" class="ttl">type Student struct {</text>
+  <text x="70" y="65" class="ftype">Name  <tspan fill="#006b85">string</tspan></text>
+  <text x="70" y="88" class="ftype">Age   <tspan fill="#006b85">int</tspan></text>
+  <text x="70" y="111" class="ftype">Email <tspan fill="#006b85">string</tspan></text>
+  <text x="40" y="134" class="ttl">}</text>
+
+  <text x="40" y="175" class="cap">An instance in memory is one labeled box with named fields:</text>
+
+  <!-- The instance box -->
+  <g transform="translate(340, 40)">
+    <rect class="outer" x="0" y="0" width="420" height="230" rx="10"/>
+    <text x="20" y="25" class="ttl" fill="#4a7dbf">Student</text>
+
+    <rect class="field" x="20" y="45"  width="380" height="45" rx="4"/>
+    <text x="35" y="73" class="fname">Name</text>
+    <text x="120" y="73" class="ftype">string</text>
+    <text x="220" y="73" class="fval">"Amina"</text>
+
+    <rect class="field" x="20" y="100" width="380" height="45" rx="4"/>
+    <text x="35" y="128" class="fname">Age</text>
+    <text x="120" y="128" class="ftype">int</text>
+    <text x="220" y="128" class="fval">20</text>
+
+    <rect class="field" x="20" y="155" width="380" height="45" rx="4"/>
+    <text x="35" y="183" class="fname">Email</text>
+    <text x="120" y="183" class="ftype">string</text>
+    <text x="220" y="183" class="fval">"amina@uni.lk"</text>
+  </g>
+
+  <text x="340" y="290" class="cap">Access fields with a dot: <tspan font-family="Menlo" fill="#222">s.Name</tspan>, <tspan font-family="Menlo" fill="#222">s.Age</tspan>, <tspan font-family="Menlo" fill="#222">s.Email</tspan></text>
+</svg>

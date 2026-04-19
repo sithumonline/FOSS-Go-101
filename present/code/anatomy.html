@@ -1,0 +1,43 @@
+<svg width="100%" viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace" font-size="16">
+  <style>
+    .code { fill: #1b1b1b; }
+    .kw   { fill: #00628a; font-weight: bold; }
+    .str  { fill: #a31515; }
+    .cmt  { fill: #888; font-style: italic; font-family: Helvetica, Arial, sans-serif; font-size: 13px; }
+    .arrow { stroke: #888; stroke-width: 1; fill: none; }
+    .pill  { fill: #fff3d6; stroke: #c9a227; stroke-width: 1; }
+    .pillTxt { font-family: Helvetica, Arial, sans-serif; font-size: 13px; fill: #5a4200; text-anchor: middle; }
+    .title { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #333; font-weight: bold; }
+  </style>
+
+  <text x="20" y="35" class="title">Every Go file has the same three parts:</text>
+
+  <!-- line 1 -->
+  <text x="60" y="80" class="code"><tspan class="kw">package</tspan> main</text>
+  <rect class="pill" x="340" y="60" width="230" height="30" rx="8"/>
+  <text class="pillTxt" x="455" y="80">1. which package this file belongs to</text>
+  <path class="arrow" d="M200,75 L340,75"/>
+
+  <!-- blank -->
+
+  <!-- line 2 -->
+  <text x="60" y="130" class="code"><tspan class="kw">import</tspan> <tspan class="str">"fmt"</tspan></text>
+  <rect class="pill" x="340" y="110" width="230" height="30" rx="8"/>
+  <text class="pillTxt" x="455" y="130">2. which other packages to use</text>
+  <path class="arrow" d="M200,125 L340,125"/>
+
+  <!-- line 3 -->
+  <text x="60" y="190" class="code"><tspan class="kw">func</tspan> main() {</text>
+  <rect class="pill" x="340" y="170" width="260" height="30" rx="8"/>
+  <text class="pillTxt" x="470" y="190">3. the function that actually runs</text>
+  <path class="arrow" d="M230,185 L340,185"/>
+
+  <!-- line 4 -->
+  <text x="100" y="220" class="code">fmt.Println(<tspan class="str">"Hello, 世界"</tspan>)</text>
+
+  <!-- line 5 -->
+  <text x="60" y="250" class="code">}</text>
+
+  <!-- footer rules -->
+  <text x="20" y="295" class="cmt">• file extension is <tspan font-family="Menlo" font-style="normal" fill="#1b1b1b">.go</tspan>   • <tspan font-family="Menlo" font-style="normal" fill="#1b1b1b">main()</tspan> is always the entry point   • Capital letters = exported (<tspan font-family="Menlo" font-style="normal" fill="#1b1b1b">Println</tspan>, not <tspan font-family="Menlo" font-style="normal" fill="#1b1b1b">println</tspan>)</text>
+</svg>

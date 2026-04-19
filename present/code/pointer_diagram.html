@@ -1,0 +1,52 @@
+<svg width="100%" viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <style>
+    .box   { fill: #eef5ff; stroke: #4a7dbf; stroke-width: 1.5; }
+    .val   { fill: #e7f5e7; stroke: #3a8a3a; stroke-width: 1.5; }
+    .ptr   { fill: #fff3d6; stroke: #c9a227; stroke-width: 1.5; }
+    .mono  { font-family: Menlo, Consolas, monospace; font-size: 16px; }
+    .lbl   { fill: #444; text-anchor: middle; font-size: 13px; }
+    .ttl   { font-size: 15px; font-weight: bold; fill: #333; }
+    .arrow { stroke: #c9a227; stroke-width: 2.5; fill: none; marker-end: url(#ah3); }
+  </style>
+  <defs>
+    <marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c9a227"/>
+    </marker>
+  </defs>
+
+  <!-- x -->
+  <text x="40" y="50" class="ttl">x := 42</text>
+  <g transform="translate(40, 70)">
+    <rect class="val" x="0" y="0" width="120" height="60"/>
+    <text class="mono" x="60" y="38" text-anchor="middle">42</text>
+    <text class="lbl" x="60" y="80">x  (an int, value)</text>
+  </g>
+
+  <!-- p -->
+  <text x="300" y="50" class="ttl">p := &amp;x</text>
+  <g transform="translate(300, 70)">
+    <rect class="ptr" x="0" y="0" width="160" height="60"/>
+    <text class="mono" x="80" y="38" text-anchor="middle">0x7ffc1a...</text>
+    <text class="lbl" x="80" y="80">p  (an *int, address of x)</text>
+  </g>
+
+  <!-- arrow from p to x -->
+  <path class="arrow" d="M300,100 C 260,100 220,100 170,100"/>
+
+  <!-- dereference -->
+  <text x="560" y="50" class="ttl">*p = 100</text>
+  <g transform="translate(560, 70)">
+    <rect class="val" x="0" y="0" width="120" height="60"/>
+    <text class="mono" x="60" y="38" text-anchor="middle">100</text>
+    <text class="lbl" x="60" y="80">x was changed through p</text>
+  </g>
+  <path class="arrow" d="M640,130 C 640,170 360,170 160,135"/>
+
+  <!-- bottom rules -->
+  <g transform="translate(40, 220)">
+    <text class="ttl" y="0">Three symbols to remember:</text>
+    <text class="mono" x="0"   y="30"><tspan fill="#c9a227">&amp;x</tspan>  — "the address of x"   (get a pointer)</text>
+    <text class="mono" x="0"   y="55"><tspan fill="#c9a227">*p</tspan>  — "the value at p"      (follow the pointer)</text>
+    <text class="mono" x="0"   y="80"><tspan fill="#4a7dbf">*int</tspan> — "a pointer to an int"  (the type)</text>
+  </g>
+</svg>

@@ -1,0 +1,71 @@
+<svg width="100%" viewBox="0 0 860 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <style>
+    .arr  { fill: #eef5ff; stroke: #4a7dbf; stroke-width: 1.5; }
+    .arrSel { fill: #c2e0ff; stroke: #4a7dbf; stroke-width: 1.5; }
+    .hdr  { fill: #fff3d6; stroke: #c9a227; stroke-width: 1.5; }
+    .mono { font-family: Menlo, Consolas, monospace; font-size: 14px; }
+    .lbl  { fill: #333; text-anchor: middle; font-size: 12px; }
+    .ttl  { font-size: 15px; font-weight: bold; fill: #333; }
+    .arrow { stroke: #c9a227; stroke-width: 2; fill: none; marker-end: url(#ah2); }
+  </style>
+  <defs>
+    <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c9a227"/>
+    </marker>
+  </defs>
+
+  <!-- Underlying array -->
+  <text x="40" y="40" class="ttl">Underlying array (fixed size, in memory)</text>
+  <g transform="translate(40, 55)">
+    <rect class="arr" x="0"   y="0" width="70" height="50"/>
+    <rect class="arr" x="70"  y="0" width="70" height="50"/>
+    <rect class="arrSel" x="140" y="0" width="70" height="50"/>
+    <rect class="arrSel" x="210" y="0" width="70" height="50"/>
+    <rect class="arrSel" x="280" y="0" width="70" height="50"/>
+    <rect class="arr" x="350" y="0" width="70" height="50"/>
+    <rect class="arr" x="420" y="0" width="70" height="50"/>
+    <rect class="arr" x="490" y="0" width="70" height="50"/>
+
+    <text class="mono" x="35"  y="30" text-anchor="middle">10</text>
+    <text class="mono" x="105" y="30" text-anchor="middle">20</text>
+    <text class="mono" x="175" y="30" text-anchor="middle">30</text>
+    <text class="mono" x="245" y="30" text-anchor="middle">40</text>
+    <text class="mono" x="315" y="30" text-anchor="middle">50</text>
+    <text class="mono" x="385" y="30" text-anchor="middle">60</text>
+    <text class="mono" x="455" y="30" text-anchor="middle">70</text>
+    <text class="mono" x="525" y="30" text-anchor="middle">80</text>
+
+    <text class="lbl" x="35"  y="70">[0]</text>
+    <text class="lbl" x="105" y="70">[1]</text>
+    <text class="lbl" x="175" y="70">[2]</text>
+    <text class="lbl" x="245" y="70">[3]</text>
+    <text class="lbl" x="315" y="70">[4]</text>
+    <text class="lbl" x="385" y="70">[5]</text>
+    <text class="lbl" x="455" y="70">[6]</text>
+    <text class="lbl" x="525" y="70">[7]</text>
+  </g>
+
+  <!-- Slice header -->
+  <text x="40" y="200" class="ttl">Slice = tiny 3-word header that points into that array</text>
+  <g transform="translate(40, 215)">
+    <rect class="hdr" x="0"   y="0" width="120" height="50"/>
+    <rect class="hdr" x="120" y="0" width="120" height="50"/>
+    <rect class="hdr" x="240" y="0" width="120" height="50"/>
+
+    <text class="mono" x="60"  y="30" text-anchor="middle">ptr → [2]</text>
+    <text class="mono" x="180" y="30" text-anchor="middle">len = 3</text>
+    <text class="mono" x="300" y="30" text-anchor="middle">cap = 6</text>
+
+    <text class="lbl" x="60"  y="70">where it starts</text>
+    <text class="lbl" x="180" y="70">how many visible</text>
+    <text class="lbl" x="300" y="70">how far it could grow</text>
+  </g>
+
+  <!-- ptr arrow -->
+  <path class="arrow" d="M60,215 C 60,170 180,140 215,108"/>
+
+  <!-- takeaway -->
+  <text x="450" y="235" class="mono">s := arr[2:5]   // len=3, cap=6</text>
+  <text x="450" y="260" fill="#555" font-size="13">A slice is cheap to copy — it's just a pointer + two ints.</text>
+  <text x="450" y="280" fill="#555" font-size="13">Two slices can share the same underlying array.</text>
+</svg>

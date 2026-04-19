@@ -1,0 +1,73 @@
+<svg width="100%" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <style>
+    .node { fill: #eef5ff; stroke: #4a7dbf; stroke-width: 1.5; }
+    .go   { fill: #00ADD8; stroke: #006b85; stroke-width: 2; }
+    .label { fill: #222; text-anchor: middle; }
+    .white { fill: #fff; font-weight: bold; font-size: 18px; text-anchor: middle; }
+    .branch { fill: #555; font-style: italic; text-anchor: middle; font-size: 13px; }
+    .arrow { stroke: #4a7dbf; stroke-width: 1.5; fill: none; marker-end: url(#ah); }
+    .arrowGo { stroke: #006b85; stroke-width: 2; fill: none; marker-end: url(#ahg); }
+  </style>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a7dbf"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#006b85"/>
+    </marker>
+  </defs>
+
+  <text x="200" y="25" class="branch">European branch — simplicity &amp; structure</text>
+  <text x="700" y="25" class="branch">American branch — systems &amp; concurrency</text>
+
+  <!-- European branch nodes -->
+  <g>
+    <rect class="node" x="60"  y="50" width="100" height="40" rx="6"/>
+    <text class="label" x="110" y="75">ALGOL (1960)</text>
+    <rect class="node" x="60"  y="110" width="100" height="40" rx="6"/>
+    <text class="label" x="110" y="135">Pascal</text>
+    <rect class="node" x="60"  y="170" width="100" height="40" rx="6"/>
+    <text class="label" x="110" y="195">Modula</text>
+    <rect class="node" x="60"  y="230" width="100" height="40" rx="6"/>
+    <text class="label" x="110" y="255">Oberon</text>
+
+    <path class="arrow" d="M110,90  L110,110"/>
+    <path class="arrow" d="M110,150 L110,170"/>
+    <path class="arrow" d="M110,210 L110,230"/>
+  </g>
+
+  <!-- American branch nodes -->
+  <g>
+    <rect class="node" x="560" y="50" width="100" height="40" rx="6"/>
+    <text class="label" x="610" y="75">BCPL</text>
+    <rect class="node" x="560" y="110" width="100" height="40" rx="6"/>
+    <text class="label" x="610" y="135">C (1972)</text>
+    <rect class="node" x="560" y="170" width="100" height="40" rx="6"/>
+    <text class="label" x="610" y="195">Unix pipes</text>
+
+    <rect class="node" x="720" y="110" width="140" height="40" rx="6"/>
+    <text class="label" x="790" y="135">CSP (Hoare, 1978)</text>
+    <rect class="node" x="720" y="170" width="140" height="40" rx="6"/>
+    <text class="label" x="790" y="195">Newsqueak (Pike)</text>
+
+    <path class="arrow" d="M610,90  L610,110"/>
+    <path class="arrow" d="M610,150 L610,170"/>
+    <path class="arrow" d="M790,150 L790,170"/>
+  </g>
+
+  <!-- Contributions labels -->
+  <text x="240" y="260" fill="#4a7dbf" font-size="12">structure, syntax,</text>
+  <text x="240" y="276" fill="#4a7dbf" font-size="12">left-to-right decls</text>
+  <text x="660" y="240" fill="#4a7dbf" font-size="12">toolchain, goroutines,</text>
+  <text x="660" y="256" fill="#4a7dbf" font-size="12">channels, select</text>
+
+  <!-- Go node -->
+  <rect class="go" x="370" y="285" width="160" height="55" rx="8"/>
+  <text class="white" x="450" y="310">Go</text>
+  <text class="white" x="450" y="330" font-size="12" font-weight="normal">2007 — 2009 — today</text>
+
+  <!-- Merge arrows into Go -->
+  <path class="arrowGo" d="M160,250 C 280,290 330,300 370,312"/>
+  <path class="arrowGo" d="M660,210 C 560,260 540,290 530,312"/>
+  <path class="arrowGo" d="M790,210 C 700,260 600,300 530,320"/>
+</svg>

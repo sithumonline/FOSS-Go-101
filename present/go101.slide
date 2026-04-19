@@ -41,24 +41,15 @@ What you get:
 
 * Go's Family Tree
 
-Go is the first mainstream language to merge *two* language traditions:
+.html code/family_tree.html
 
-*European* *branch* — simplicity and structure
-
-  ALGOL → Pascal → Modula → Oberon        (Niklaus Wirth)
-
-*American* *branch* — systems and concurrency
-
-  BCPL → C → Unix pipes → CSP → Newsqueak (Thompson, Ritchie, Hoare, Pike)
+Go is the first mainstream language to merge *two* language traditions — European simplicity (left) and American systems/concurrency (right).
 
 That is why in Go:
 
 - Declarations read left-to-right: `name type` (from *Oberon*, not C)
 - Goroutines and channels feel natural (from Hoare's *CSP*, 1978)
-- The tools feel Unix-like (Ken Thompson co-created Unix)
 - Implicit interfaces mirror a 1989 HP Labs paper — rediscovered, not invented
-
-Go is sometimes called _"a language from the 1970s"_ — because it revived many great ideas whose time had finally come.
 
 * What is a Go Program?
 
@@ -72,6 +63,10 @@ Every Go program has a shape. Before learning the details, learn to read it.
 * Hello, 世界
 
 .play code/hello.go
+
+* Anatomy of a Go Program
+
+.html code/anatomy.html
 
 - `package main` tells Go this is a runnable program
 - `import "fmt"` brings in the format package
@@ -158,6 +153,10 @@ Arrays have a fixed size. Slices are flexible views over data.
 
 In real Go code, you will almost always use slices.
 
+* How a Slice Works
+
+.html code/slice_diagram.html
+
 * Range
 
 .code code/range.go
@@ -185,6 +184,10 @@ Good examples for students:
 
   Student   Book   BankAccount   CartItem
 
+* A Struct is a Labeled Box
+
+.html code/struct_diagram.html
+
 * How Do We Add Behaviour?
 
 *Methods* are functions attached to a type. This is how Go adds behaviour to data.
@@ -205,6 +208,10 @@ An *interface* describes behaviour, not structure.
 
 _Fun_ _fact:_ Go's implicit interfaces closely match a 1989 HP Labs paper the Go team didn't know about — great ideas tend to be rediscovered.
 
+* Many Types → One Interface
+
+.html code/interface_diagram.html
+
 * How Does Go Handle Memory?
 
 *Pointers* store the address of a value. They let functions modify data without copying it.
@@ -215,6 +222,10 @@ The clearest way to teach pointers:
 
 1. Show a function that *fails* to modify a variable (passes by value)
 2. Show the pointer version that *works*
+
+* Pointers, Visually
+
+.html code/pointer_diagram.html
 
 * How Does Go Handle Problems?
 
